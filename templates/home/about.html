@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+{% load static%}
+{% block title %} about {% endblock title %}
+{% block aboutactive  %}active{% endblock aboutactive  %}
+
+{% block body %}
+<!-- <div class="container">
+    <div class="">
+        <img class="rounded-circle" src="https://source.unsplash.com/1600x450/?man, people"
+            alt="Generic placeholder image" width="140" height="140">
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies
+            vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus
+            magna.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+    </div>
+</div> -->
+
+<div class="container my-4">
+    <div role="main" class="container">
+        <div class="row">
+
+            <div class="col-md-8 blog-main">
+                <h3 class="font-italic text-center"> About Our BlogSite</h3>
+                <hr>
+                <div class="my-4 p-3 text-justify font-italic">
+                    <p class="text-center"><svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-info-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                      </svg></p>
+                    <p>This blog site will show a complete guideline to the begginers. How to start learning Django
+                        framework, where to start, what a begginers need to know about learning Django Framework.
+                    </p>
+                    <p> In this blog you can view the blogs of programming languages and view the guideline of skill you
+                        need to know while start learning python and Django framework.</p>
+                    <p>You can get a basic understanding about HyperText Markup Language, Cascading Style Sheet and
+                        JavaScript. For making a website we need a basic understanding of this languages also because
+                        thoose are the languages which used for making front end of a website. so, In this blog i
+                        described some basic information about thoose.</p>
+                    <p>
+                        Everyone Knows,
+                        Django is a high-level Python Web framework that encourages rapid development and clean,
+                        pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web
+                        development, so you can focus on writing your app without needing to reinvent the wheel. It's
+                        free and open source. So, in our blog i discussed about this Django Framework. Also you can
+                        learn Django framework from <a href="https://docs.djangoproject.com/en/3.0/"><b>Django Documentation</b></a>. Django Software Foundation built that site for
+                        learning Django.
+                    </p>
+                    <p> Last but not the list, before start learning python & django please check the frequently asked question (FAQ) in the homepage section.</p>
+                    <p>Thank You so much. Let's get started!</p>
+                </div>
+
+
+            </div><!-- /.blog-main -->
+
+            <aside class="col-md-4 blog-sidebar">
+
+                <div class="p-3 mb-3 bg-dark rounded text-center text-light">
+                    <img class="rounded-circle " src="{% static 'images/me.jpg' %}" alt="Generic placeholder image"
+                        width="100" height="140">
+                    <h3 class="font-italic my-3">A bit about me...</h3>
+
+                    <p class="mb-0">Hello Guys, Thanks for actually checking out my 'About me' page. My name is Sayem
+                        Uddin and i am a web developer.</p>
+                    <p>I had completed my gradtuation in Computer Science & Engineering from Port City International
+                        University, Chittagong, Bangladesh.</p>
+                    <p>I created this blog to show a way to practise and know about Django & python language for
+                        begginers. Because when i started learning Django i faced lots of problem like finding how to install
+                        django, pip, virtual environment and which guide line i should follow etc. I have to search lots
+                        of websites and find the query from there than apply it and it took a plethora of time. </p>
+                    <p>So, that's why i made this blog to view everything here. And try to show a complete guideline.
+                    </p>
+                </div>
+
+                <div class="p-3">
+                    <h3 class="font-italic">Contact me via:</h3>
+                    <ol class="list-unstyled">
+                        <li><a href="https://www.instagram.com">Instagram</a></li>
+                        <li><a href="https://www.twitter.com">Twitter</a></li>
+                        <li><a href="https://www.facebook.com">Facebook</a></li>
+
+                    </ol>
+                </div>
+            </aside><!-- /.blog-sidebar -->
+
+        </div><!-- /.row -->
+    </div><!-- /.row -->
+
+
+</div>
+{% endblock body %}

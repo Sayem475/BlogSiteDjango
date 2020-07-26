@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+{% block title %} learn {% endblock title %}
+{% block learnactive  %}active{% endblock learnactive  %}
+{% load static%}
+
+
+
+
+{% block body %}
+<div class="container">
+    <h4 class="font-italic text-center">Start Learning</h4>
+    <hr>
+</div>
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="card mb-3 p-3 shadow-sm">
+             
+                <a href="/hyppage"><abbr title="HyperText Markup Language" class="initialism"> <img
+                        class="bd-placeholder-img card-img-top  flex-auto  d-md-block img-thumbnail img-fluid"
+                        style="width:400px; height:350px" src="{% static 'images/html.png'%}" alt="First slide"></abbr></a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3 p-3 shadow-sm">
+                <a href="/cascadpage"><abbr title="Cascading Style Sheet" class="initialism"> <img
+                        class="bd-placeholder-img card-img-top   flex-auto  d-md-block img-thumbnail img-fluid"
+                        style="width:400px; height:350px" src="{% static 'images/css.png'%}" alt="First slide"></abbr></a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3 p-3 shadow-sm">
+                <a href="/javaspage"> <abbr title="javaScript" class="initialism"> <img
+                        class="bd-placeholder-img card-img-top   flex-auto  d-md-block img-thumbnail img-fluid"
+                        style="width:400px; height:350px" src="{% static 'images/js3.png'%}" alt="First slide"></abbr></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row ">
+        <div class="col-md-4">
+            <div class="card mb-3 p-3 shadow-sm">
+                <a href="/pypage"> <abbr title="Python Language" class="initialism"> <img
+                        class="bd-placeholder-img card-img-top   flex-auto  d-md-block img-thumbnail img-fluid"
+                        style="width:400px; height:350px" src="{% static 'images/python.png'%}" alt="First slide"></abbr></a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3 p-3 shadow-sm">
+                <a href="/djpage"><abbr title="Django Framework" class="initialism">  <img
+                        class="bd-placeholder-img card-img-top   flex-auto  d-md-block img-thumbnail img-fluid"
+                        style="width:400px; height:350px" src="{% static 'images/django.jpg'%}" alt="First slide"></abbr></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock body %}

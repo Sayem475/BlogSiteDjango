@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+    {% block css %}
+    {% endblock css %}
+</head>
+<body>
+    <h1> {% block head %}{% endblock %} </h1>
+    <!-- This is our NavBar  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/"> WitDjango </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto {% block homeactive  %}{% endblock homeactive  %}">
+                <li class="nav-item {% block blogactive  %}{% endblock blogactive  %}">
+                    <a class="nav-link" href="/Blog">Blogs <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item {% block learnactive  %}{% endblock learnactive  %}">
+                    <a class="nav-link" href="#">Learn</a>
+                </li>
+                <li class="nav-item {% block contactactive  %}{% endblock contactactive  %}">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item {% block aboutactive  %}{% endblock aboutactive  %}">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                {% comment %} if user login than he will show this  {% endcomment %}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                <a class="nav-link"><b>welcome! {{request.user}}</b></a>
+                </li>
+                {% else %}
+                 <!-- button for login modal  -->
+                <li class="nav-item {% block loginactive  %}{% endblock loginactive  %}">
+                    <a  class="nav-link" data-toggle="modal" href="#login">  Log In </a>
+                </li>
+                {% endif %}
+            </ul>
+            <form action="/search" method="GET" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="query" name="query">
+                <button class="btn btn-outline-success my-2 mr-sm-2" type="submit">Search</button>
+            </form>
+            <!-- Button trigger modal -->
+            <!-- button for sign up modal  -->
+            {% comment %} if user login than he will show this  {% endcomment %}
+            {% if user.is_authenticated %}
+            <a href="/logout"  class="btn btn-outline-primary my-sm-0">
+                Log out
+            </a>
+                {% else %}
+            <button type="submit" class="btn btn-outline-primary my-sm-0" data-toggle="modal" data-target="#register">
+                Sign Up
+            </button>
+            
+            {% endif %}
+        
+        </div>
+    </nav>
+    <!-- NavBar Ends  -->
+
+
+    <!-- get messages style from bootstrap and code with django  -->
+    {% comment %} we will show messages at this point from anywhere any pages  {% endcomment %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    
+    <!-- Modal for sign up -->
+    <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="register"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerLabel">Sign Up Here...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% comment %} modal form for register or sign up starts here.. {% endcomment %}
+                    <form action="/signup" method="post"> {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">UserName:</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Enter Username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="f_name">First Name:</label>
+                            <input type="text" class="form-control" id="f_name" name="f_name"
+                                placeholder="Enter First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="l_name">Last Name:</label>
+                            <input type="text" class="form-control" id="l_name" name="l_name"
+                                placeholder="Enter Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address:</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                aria-describedby="emailHelp" placeholder="Enter email" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="pas1">Password:</label>
+                            <input type="password" class="form-control" id="pas1" name="pas1" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pas2">Confirm Password:</label>
+                            <input type="password" class="form-control" id="pas2" name="pas2"
+                                placeholder="Confirm Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- modal ends here..  -->
+
+      <!-- modal for log in  -->
+      
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="loginLabel">Log In Here...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <!-- modal form for log in starts here  -->
+                <form action="/login" method="post"> {% csrf_token %}
+                    <div class="form-group">
+                        <label for="usname">UserName:</label>
+                        <input type="text" class="form-control" id="usname" name="usname"
+                             placeholder="Enter UserName">                  
+                    </div>
+                    <div class="form-group">
+                        <label for="pas">Password:</label>
+                        <input type="password" class="form-control" id="pas" name="pas" placeholder="Password">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- modal ends here..  -->
+    {% block body %}
+    {% endblock %}
+    <!-- Our footer starts here  -->
+    <hr>
+    <footer class="section section_footer">
+        <div class="container-fluid bg-light">
+            <div class="row">
+                <!-- grid waitting  -->
+                <div class="col-sm-4">
+                    <!-- About Us -->
+                </div>
+                <div class="col-sm-4 m-4 mx-4 my-4">
+                    <!-- Contact info -->
+                    <h5 class="section_footer__heading">Contact info</h5>
+                    <hr>
+                    <h6>Developed By <a href="#"><b>Md Sayem Uddin</b></a></h6>
+                    <ul class="section_footer__info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i> Address:
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i> +880 1316522214
+                        </li>
+                        <li>
+                            <i class="far fa-envelope"></i> <a href="#">sayemuddin471@gmail.com</a>
+                        </li>
+                    </ul>
+                    <h6><a href="/contact" style="color:black">Contact Me</a></h6>
+                    <h6><a href="/about" style="color:black">About Me</a></h6>
+                </div>
+                <!-- grid waitting  -->
+                <div class="col-sm-4">
+                </div>
+            </div> <!-- / .row -->
+            <div class="row">
+                <div class="col-12">               
+                </div>
+            </div> <!-- / .row -->
+        </div> <!-- / .container -->
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
